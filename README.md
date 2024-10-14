@@ -58,11 +58,35 @@ Similarly, in this case:
 - **Authentication**: The server proves its identity to the client using an SSL certificate, helping prevent man-in-the-middle attacks.
 - **Integrity**: Data integrity is maintained, ensuring that data sent between the client and server is not altered during transmission.
 
----
-
 ### Conclusion:
 - **The server's role**: Listen for client connections, process commands securely, and respond with results.
 - **The client’s role**: Initiate the connection, send requests, and handle responses while ensuring secure communication.
 - **SSL/TLS**: Ensures that all data transmitted between the client and server is encrypted, authenticated, and safe from tampering.
 
 This client-server architecture is widely used in secure communication systems, from websites (HTTPS) to remote command execution (as in this case).
+
+### Create a Certificate Authority Root:
+```
+openssl genrsa -des3 -out ca.key 4096  
+openssl req -new -x509 -days 365 -key ca.key -out ca.crt
+```
+
+### Create the Client Key and CSR:
+```
+openssl genrsa -des3 -out client.key 4096  
+openssl req -new -key client.key -out client.csr  
+# self-signed
+openssl x509 -req -days 365 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out client.crt
+```
+
+### Convert Client Key to PKCS (It may be installed in most browsers):
+```
+openssl pkcs12 -export -clcerts -in client.crt -inkey client.key -out client.p12
+```
+
+### Convert Client Key to (combined) PEM:
+Combines `client.crt` and `client.key` into a single PEM file for programs using OpenSSL.
+
+```
+openssl pkcs12 -in client.p12 -out client.pem -clcerts
+```
