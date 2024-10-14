@@ -1,5 +1,7 @@
 ### **1. Server:**
 
+![image](https://github.com/user-attachments/assets/c863690d-8d5a-41cb-97a4-69118ebf4f52)
+
 In networking, a **server** is a system that listens for incoming connections from clients. It can be a physical machine or a virtual service that waits for clients to send requests. The server responds to these requests, providing the necessary resources or data.
 
 #### **Objectives of the Server**:
@@ -15,6 +17,8 @@ In networking, a **server** is a system that listens for incoming connections fr
 - **Handling Requests**: When the client sends a request (like a command), the server executes the necessary tasks and responds securely.
   
 ### **2. Client:**
+
+![image](https://github.com/user-attachments/assets/75e707df-2776-4211-a6b8-6faf79d217c4)
 
 A **client** in networking is any system or software that connects to a server to send requests or receive services. The client initiates the connection to the server and communicates securely in an SSL/TLS scenario.
 
